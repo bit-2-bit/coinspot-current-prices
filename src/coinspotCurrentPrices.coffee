@@ -38,7 +38,11 @@
 
         if !@loading and (@lastLoadTime is null or (@lastLoadTime - 1) + @delay <= new Date())
           @loading = true
-          $.getJSON(@url).done(handleData).fail(handleFail).always(andFinally)
+          ajaxOpts =
+            url: @url
+            dataType: "jsonp"
+            success: handleData
+          $.ajax(ajaxOpts).fail(handleFail).always(andFinally)
         return
 
     @get: ->

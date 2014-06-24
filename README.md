@@ -6,7 +6,7 @@ A jQuery Plugin that extracts current prices from
 
 ## Disclaimer
 
-This is functional but very much a first draft.
+This is not currently functional as i'm waiting on Coinspot to add the JSONP callback handler.
 
 ### First
 
@@ -18,11 +18,11 @@ npm install
 
 ## To Test
 
+Tests are currently very minimal.
+
 ```bash
 grunt test
 ```
-
-Note that by default this will supress any console.log output.  To get that output as well you need to add the `--debug` flag, which also generates a lot of `phantomjs` noise.
 
 ## To Build
 

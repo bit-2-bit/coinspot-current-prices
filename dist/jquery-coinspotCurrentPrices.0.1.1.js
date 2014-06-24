@@ -32,7 +32,7 @@
         }
 
         PrivatePriceLoader.prototype.loadPrices = function() {
-          var andFinally, handleData, handleFail;
+          var ajaxOpts, andFinally, handleData, handleFail;
           handleData = (function(_this) {
             return function(data) {
               if (data && data.status === "ok") {
@@ -57,7 +57,12 @@
           })(this);
           if (!this.loading && (this.lastLoadTime === null || (this.lastLoadTime - 1) + this.delay <= new Date())) {
             this.loading = true;
-            $.getJSON(this.url).done(handleData).fail(handleFail).always(andFinally);
+            ajaxOpts = {
+              url: this.url,
+              dataType: "jsonp",
+              success: handleData
+            };
+            $.ajax(ajaxOpts).fail(handleFail).always(andFinally);
           }
         };
 
