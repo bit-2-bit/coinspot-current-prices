@@ -38,7 +38,6 @@
               if (data && data.status === "ok") {
                 _this.prices = data.prices;
                 _this.lastLoadTime = new Date();
-                console.debug("prices set to", _this.prices, "at", _this.lastLoadTime);
                 $(document).trigger("price-change", [_this.prices]);
               } else {
                 console.error("server returned", data);
@@ -93,9 +92,9 @@
           var price;
           price = parseFloat(prices[currency][priceField]) * priceMargin;
           if (useVal) {
-            $this.val(price);
+            $this.val(parseFloat(price.toFixed(6)).toString());
           } else {
-            $this.text(price);
+            $this.text(parseFloat(price.toFixed(6)).toString());
           }
         });
         return $this;

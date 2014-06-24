@@ -19,7 +19,7 @@
           if data && data.status is "ok"
             @prices = data.prices
             @lastLoadTime = new Date()
-            console.debug "prices set to", @prices, "at", @lastLoadTime
+            # console.debug "prices set to", @prices, "at", @lastLoadTime
             $(document).trigger "price-change", [@prices]
           else
             console.error "server returned", data
@@ -68,10 +68,11 @@
       # TODO: do pluginy stuff with $this
       $(document).on "price-change", (evt, prices) ->
         price = parseFloat(prices[currency][priceField]) * priceMargin
+        # see http://stackoverflow.com/questions/3612744/javascript-remove-insignificant-trailing-zeros-from-a-number
         if useVal
-          $this.val(price)
+          $this.val(parseFloat(price.toFixed(6)).toString())
         else
-          $this.text(price)
+          $this.text(parseFloat(price.toFixed(6)).toString())
         return
       return $this # because it's chainable.
 
