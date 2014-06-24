@@ -9,7 +9,7 @@
         @url = "https://www.coinspot.com.au/pubapi/latest"
         @prices = {}
         @lastLoadTime = null
-        @delay = 30000
+        @delay = 60000
         @loading = false
         return
 
