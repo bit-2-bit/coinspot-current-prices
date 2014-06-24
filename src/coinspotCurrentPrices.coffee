@@ -15,7 +15,8 @@
 
       loadPrices: ->
         # https://www.coinspot.com.au/pubapi/latest
-        handleData = (data) =>
+        handleData = (jsonp) =>
+          data = $.parseJSON(jsonp.query.results.body.p);
           if data && data.status is "ok"
             @prices = data.prices
             @lastLoadTime = new Date()
@@ -38,11 +39,9 @@
 
         if !@loading and (@lastLoadTime is null or (@lastLoadTime - 1) + @delay <= new Date())
           @loading = true
-          ajaxOpts =
-            url: @url
-            dataType: "jsonp"
-            success: handleData
-          $.ajax(ajaxOpts).fail(handleFail).always(andFinally)
+          query = encodeURI("select * from html where url=")
+          yqlUrl = "http://query.yahooapis.com/v1/public/yql?q=#{query}\"#{@url}\"&format=json&callback=?"
+          $.getJSON(yqlUrl).done(handleData).fail(handleFail).always(andFinally)
         return
 
     @get: ->

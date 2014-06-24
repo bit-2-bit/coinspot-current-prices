@@ -1,5 +1,5 @@
 /*!
- * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.1.1 - 2014-06-24
+ * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.1.2 - 2014-06-25
  * https://github.com/bit-2-bit/coinspotCurrentPrices
  * Copyright (c) 2014 Dave Sag; Licensed MIT
  */
@@ -32,9 +32,11 @@
         }
 
         PrivatePriceLoader.prototype.loadPrices = function() {
-          var ajaxOpts, andFinally, handleData, handleFail;
+          var andFinally, handleData, handleFail, query, yqlUrl;
           handleData = (function(_this) {
-            return function(data) {
+            return function(jsonp) {
+              var data;
+              data = $.parseJSON(jsonp.query.results.body.p);
               if (data && data.status === "ok") {
                 _this.prices = data.prices;
                 _this.lastLoadTime = new Date();
@@ -57,12 +59,9 @@
           })(this);
           if (!this.loading && (this.lastLoadTime === null || (this.lastLoadTime - 1) + this.delay <= new Date())) {
             this.loading = true;
-            ajaxOpts = {
-              url: this.url,
-              dataType: "jsonp",
-              success: handleData
-            };
-            $.ajax(ajaxOpts).fail(handleFail).always(andFinally);
+            query = encodeURI("select * from html where url=");
+            yqlUrl = "http://query.yahooapis.com/v1/public/yql?q=" + query + "\"" + this.url + "\"&format=json&callback=?";
+            $.getJSON(yqlUrl).done(handleData).fail(handleFail).always(andFinally);
           }
         };
 

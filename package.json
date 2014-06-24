@@ -2,7 +2,7 @@
   "name": "coinspotCurrentPrices",
   "title": "Display the latest Coinspot prices with jquery-coinspotCurrentPrices",
   "description": "A jQuery plugin that retreives and displays the latest Coinspot prices",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "coinspotCurrentPrices.js",
   "homepage": "https://github.com/bit-2-bit/coinspotCurrentPrices",
   "author": {
