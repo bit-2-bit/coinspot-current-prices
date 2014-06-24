@@ -1,5 +1,5 @@
 /*!
- * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.1.0 - 2014-06-24
+ * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.1.1 - 2014-06-24
  * https://github.com/bit-2-bit/coinspotCurrentPrices
  * Copyright (c) 2014 Dave Sag; Licensed MIT
  */
@@ -26,7 +26,7 @@
           this.url = "https://www.coinspot.com.au/pubapi/latest";
           this.prices = {};
           this.lastLoadTime = null;
-          this.delay = 30000;
+          this.delay = 60000;
           this.loading = false;
           return;
         }
