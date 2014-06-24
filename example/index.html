@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>coinspotCurrentPrices Test Suite</title>
+  <!-- Load local jQuery. This can be overridden with a ?jquery=___ param. -->
+  <script src="../libs/jquery-loader.js"></script>
+  
+  <!-- Load local lib (in a real example you'd use the files in the dist/ folder). -->
+  <script src="../build/coinspotCurrentPrices.js"></script>
+
+  <!-- boostrap is not essential but makes it nicer -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="jumbotron">
+    <h2>Coinspot latest prices</h2>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Last</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Bitcoin</th>
+            <td  data-currency="btc" data-price="bid" data-margin="1.07"></td>
+            <td  data-currency="btc" data-price="ask" data-margin="1.07"></td>
+            <td  data-currency="btc" data-price="last"></td>
+          </tr>
+          <tr>
+            <th>Litecoin</th>
+            <td  data-currency="ltc" data-price="bid" data-margin="1.07"></td>
+            <td  data-currency="ltc" data-price="ask" data-margin="1.07"></td>
+            <td  data-currency="ltc" data-price="last"></td>
+          </tr>
+          <tr>
+            <th>Dogecoin</th>
+            <td  data-currency="doge" data-price="bid" data-margin="1.07"></td>
+            <td  data-currency="doge" data-price="ask" data-margin="1.07"></td>
+            <td  data-currency="doge" data-price="last"></td>
+          </tr>
+        </tbody>
+    </div>
+  </div>
+  <script>
+  $(document).ready(function(){
+    $("td[data-currency]").coinspotCurrentPrices();
+  });
+  </script>
+</body>
+</html>

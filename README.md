@@ -4,9 +4,9 @@ coinspotCurrentPrices
 A jQuery Plugin that extracts current prices from
 [the Coinspot API](https://www.coinspot.com.au/api) and displays them within the element you specify.
 
-## This Plugin is currently non-functional
+## Disclaimer
 
-I've just started writing it.
+This is functional but very much a first draft.
 
 ### First
 
@@ -24,7 +24,7 @@ grunt test
 
 Note that by default this will supress any console.log output.  To get that output as well you need to add the `--debug` flag, which also generates a lot of `phantomjs` noise.
 
-### To Build
+## To Build
 
 ```bash
 grunt
@@ -37,4 +37,8 @@ Files created are:
 * `jquery-coinspotCurrentPrices.0.0.1.js` - the 'developer' version.
 * `jquery-coinspotCurrentPrices.0.0.1.min.js` The minified version for production use.
 * `jquery-coinspotCurrentPrices.0.0.1.min.map` The `sourcemap` file for debugging using the minified version.
+
+## To use
+
+See the example.
 

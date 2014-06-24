@@ -9,13 +9,15 @@
   <!-- Load local QUnit. -->
   <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
   <script src="../libs/qunit/qunit.js"></script>
+  
+  <!-- load sinon and sinon's fake-server to mock the AJAX call -->
+  <script src="../node_modules/sinon//pkg/sinon-1.10.2.js"></script>
+  <script src="../node_modules/sinon//pkg/sinon-server-1.10.2.js"></script>
+
   <!-- Load local lib and tests. -->
   <script src="../build/coinspotCurrentPrices.js"></script>
   <script src="../build/test/coinspotCurrentPricesTest.js"></script>
-  <!-- Removing access to jQuery and $. But it'll still be available as _$, if
-       you REALLY want to mess around with jQuery in the console. REMEMBER WE
-       ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->
-  <script>window._$ = jQuery.noConflict(true);</script>
+
 </head>
 <body>
   <div id="qunit">
@@ -27,9 +29,9 @@
   <ol id="qunit-tests"></ol>
   <!-- include one or more 'qunit-container' elements in here -->
   <div id="qunit-fixture">
-    <div class="qunit-container"></div>
-    <div class="qunit-container"></div>
-    <div class="qunit-container"></div>
+    <div class="qunit-container" data-currency="btc" data-price="bid"></div>
+    <div class="qunit-container" data-currency="btc" data-price="ask"></div>
+    <div class="qunit-container" data-currency="btc" data-price="last"></div>
   </div>
 </body>
 </html>

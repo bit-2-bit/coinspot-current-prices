@@ -24,10 +24,30 @@
   
     setup: ->
       this.elems = $("#qunit-fixture").children(".qunit-container")
+      this.server = sinon.fakeServer.create()
+      this.response =
+        status: 200
+        headers:
+          "Content-Type": "application/json"
+        body: JSON.stringify {
+          status: "ok",
+          prices:
+            btc:
+              ask: "668.5",
+              bid: "640",
+              last: "670"
+        }
+      return
+
+    teardown: ->
+      this.server.restore()
+      return
 
   # all jQuery plugins must be chainable.
   test "is chainable", ->
-    expect(1)
-    strictEqual(this.elems.coinspotCurrentPrices(), this.elems, "should be chainable")
-
+    strictEqual this.elems.coinspotCurrentPrices(), this.elems, "should be chainable"
+    console.debug this.server.requests
+    this.server.requests[0].respond this.response.status, this.response.headers, this.response.body
+    equal this.server.requests[0].url, "https://www.coinspot.com.au/pubapi/latest", "expected the ajax call to be to coinspot's public api"
+    equal this.server.requests.length, 1, "expected only one ajax call."
 ) jQuery
