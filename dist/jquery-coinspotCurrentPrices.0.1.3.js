@@ -1,6 +1,6 @@
 /*!
  * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.1.3 - 2014-06-25
- * https://github.com/bit-2-bit/coinspotCurrentPrices
+ * https://github.com/bit-2-bit/coinspot-current-prices
  * Copyright (c) 2014 Dave Sag; Licensed MIT
  */
 (function() {
