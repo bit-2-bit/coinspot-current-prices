@@ -1,5 +1,5 @@
 /*!
- * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.1.3 - 2014-06-25
+ * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.2.0 - 2014-06-25
  * https://github.com/bit-2-bit/coinspot-current-prices
  * Copyright (c) 2014 Dave Sag; Licensed MIT
  */
@@ -76,10 +76,7 @@
       return PriceLoader;
 
     })();
-    $.fn.coinspotCurrentPrices = function(options) {
-      var opts;
-      opts = $.extend(true, {}, $.fn.coinspotCurrentPrices.options);
-      this.options = typeof options === "object" ? $.extend(true, opts, options) : opts;
+    return $.fn.coinspotCurrentPrices = function() {
       this.loader = PriceLoader.get();
       this.loader.loadPrices();
       return this.each(function() {
@@ -103,9 +100,6 @@
         });
         return $this;
       });
-    };
-    return $.fn.coinspotCurrentPrices.options = {
-      currency: "DOGE"
     };
   })(jQuery);
 
