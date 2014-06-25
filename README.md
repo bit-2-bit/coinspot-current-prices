@@ -16,8 +16,6 @@ npm install
 
 ## To Test
 
-Tests are currently very minimal.
-
 ```bash
 grunt test
 ```
@@ -32,9 +30,9 @@ This will output the final distribution files into the `dist/` folder, prefixed 
 
 Files created are:
 
-* `jquery-coinspotCurrentPrices.0.1.2.js` - the 'developer' version.
-* `jquery-coinspotCurrentPrices.0.1.2.min.js` The minified version for production use.
-* `jquery-coinspotCurrentPrices.0.1.2.min.map` The `sourcemap` file for debugging using the minified version.
+* `jquery-coinspotCurrentPrices.0.1.3.js` - the 'developer' version.
+* `jquery-coinspotCurrentPrices.0.1.3.min.js` The minified version for production use.
+* `jquery-coinspotCurrentPrices.0.1.3.min.map` The `sourcemap` file for debugging using the minified version.
 
 ## To use
 

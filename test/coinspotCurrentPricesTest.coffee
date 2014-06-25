@@ -23,32 +23,37 @@
   module "basic tests",
   
     setup: ->
-      this.elems = $("#qunit-fixture").children(".qunit-container")
-      # alas sinon's fakeserver does not play nice with jsonp
-      # this.server = sinon.fakeServer.create()
-      # responseBody =
-      #   status: "ok",
-      #   prices:
-      #     btc:
-      #       ask: "668.5",
-      #       bid: "640",
-      #       last: "670"
-      # this.response =
-      #   status: 200
-      #   headers:
-      #     "Content-Type": "application/json"
-      #   body: JSON.stringify responseBody
+      @elems = $("#qunit-fixture").children(".qunit-container")
+      @responseBody =
+        status: "ok"
+        prices:
+          btc:
+            ask: "668.5",
+            bid: "640",
+            last: "670"
+      jsonpWrapper =
+        query:
+          count: 1
+          created: new Date().toISOString()
+          results:
+            body: 
+              p: JSON.stringify this.responseBody
+      deferred = $.Deferred()
+      deferred.resolveWith(null, [jsonpWrapper])
+      stub = sinon.stub($, "getJSON").returns deferred
       return
 
-    # teardown: ->
-    #   this.server.restore()
-    #   return
+    teardown: ->
+      $.getJSON.restore()
+      return
 
-  # all jQuery plugins must be chainable.
-  test "is chainable", ->
-    strictEqual this.elems.coinspotCurrentPrices(), this.elems, "should be chainable"
-    # console.debug this.server.requests
-    # this.server.requests[0].respond this.response.status, this.response.headers, this.response.body
-    # equal this.server.requests[0].url, "https://www.coinspot.com.au/pubapi/latest", "expected the ajax call to be to coinspot's public api"
-    # equal this.server.requests.length, 1, "expected only one ajax call."
+  # do a bunch of tests in one go
+  test "is chainable, getJSON is called once, and 'price-change' event is triggered", ->
+    $(document).on "price-change", (evt, prices) =>
+      equal prices.btc.ask, @responseBody.prices.btc.ask, "expected correct btc ask price"
+      equal prices.btc.bid, @responseBody.prices.btc.bid, "expected correct btc bid price"
+      equal prices.btc.last, @responseBody.prices.btc.last, "expected correct btc last price"
+    strictEqual @elems.coinspotCurrentPrices(), @elems, "should be chainable"
+    equal $.getJSON.calledOnce, true, "expected $.getJSON to be called"
+    expect 5
 ) jQuery
