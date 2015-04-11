@@ -1,7 +1,7 @@
 /*!
- * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.2.0 - 2014-06-25
+ * Display the latest Coinspot prices with jquery-coinspotCurrentPrices - v0.3.0 - 2015-04-11
  * https://github.com/bit-2-bit/coinspot-current-prices
- * Copyright (c) 2014 Dave Sag; Licensed MIT
+ * Copyright (c) 2015 Dave Sag; Licensed MIT
  */
 (function() {
   if (typeof jQuery !== "function") {
@@ -36,7 +36,7 @@
           handleData = (function(_this) {
             return function(jsonp) {
               var data;
-              data = $.parseJSON(jsonp.query.results.body.p);
+              data = $.parseJSON(jsonp.query.results.body);
               if (data && data.status === "ok") {
                 _this.prices = data.prices;
                 _this.lastLoadTime = new Date();

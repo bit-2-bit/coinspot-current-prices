@@ -16,7 +16,7 @@
       loadPrices: ->
         # https://www.coinspot.com.au/pubapi/latest
         handleData = (jsonp) =>
-          data = $.parseJSON(jsonp.query.results.body.p);
+          data = $.parseJSON(jsonp.query.results.body)
           if data && data.status is "ok"
             @prices = data.prices
             @lastLoadTime = new Date()
